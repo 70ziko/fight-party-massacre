@@ -1,16 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=4 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://bxyng0sw7ws5n" path="res://shapes/collision_shape_2d.gd" id="1_wtcfe"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e48y"]
+radius = 1067.0
+height = 5052.0
+
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(721, 2944)
 script = ExtResource("1_0e48y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(51, 272)
+shape = SubResource("CapsuleShape2D_0e48y")
+disabled = true
 script = ExtResource("1_wtcfe")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+
+[node name="Sprite" type="Node2D" parent="Player"]
+
+[node name="Line2D" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(85, -993, 695, -383, 1074, 573)
+width = 40.0
+
+[node name="Line2D2" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(85, -993, -629, -310, -903, 592)
+width = 40.0
