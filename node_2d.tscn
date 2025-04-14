@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://bxyng0sw7ws5n" path="res://shapes/collision_shape_2d.gd" id="1_wtcfe"]
@@ -7,6 +7,8 @@
 radius = 1067.0
 height = 5052.0
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_0e48y"]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -14,7 +16,7 @@ position = Vector2(721, 2944)
 script = ExtResource("1_0e48y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(51, 272)
+position = Vector2(56, 694)
 shape = SubResource("CapsuleShape2D_0e48y")
 disabled = true
 script = ExtResource("1_wtcfe")
@@ -25,10 +27,28 @@ script = ExtResource("1_wtcfe")
 
 [node name="Sprite" type="Node2D" parent="Player"]
 
-[node name="Line2D" type="Line2D" parent="Player/Sprite"]
-points = PackedVector2Array(85, -993, 695, -383, 1074, 573)
-width = 40.0
+[node name="right_arm" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(85, -993, 692, -313, 1074, 573)
+width = 80.0
 
-[node name="Line2D2" type="Line2D" parent="Player/Sprite"]
-points = PackedVector2Array(85, -993, -629, -310, -903, 592)
-width = 40.0
+[node name="left_arm" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(85, -993, -546, -292, -903, 592)
+width = 80.0
+
+[node name="body" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(88, -971, 74, 1065)
+width = 80.0
+
+[node name="left_leg" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(58, 1033, -391, 1866, -702, 2865)
+width = 80.0
+
+[node name="right_leg" type="Line2D" parent="Player/Sprite"]
+points = PackedVector2Array(58, 1033, 611, 1893, 877, 2809)
+width = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Sprite"]
+position = Vector2(183, 2858.75)
+scale = Vector2(885, 846.5)
+texture = SubResource("CanvasTexture_0e48y")
+offset = Vector2(-0.1, -5)
