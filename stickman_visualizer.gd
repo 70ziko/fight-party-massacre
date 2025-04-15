@@ -4,29 +4,74 @@ var bone_color = Color.WHITE
 var joint_color = Color.RED
 var bone_width = 2.0
 var joint_radius = 3.0
+var head_radius = 10.0
 
 func _draw():
-    var skeleton = $"../Skeleton2D"
-    if not skeleton:
-        return
-        
-    # Draw all bones recursively
-    draw_bone_recursive(skeleton.get_node("Hip"))
-    
-    # Draw joints
-    draw_joints(skeleton.get_node("Hip"))
+	var skeleton = $"../Skeleton2D"
+	if not skeleton:
+		return
+	
+	# Draw the main body parts manually to avoid drawing all the internal connections
+	
+	# Draw the torso
+	draw_line(skeleton.get_node("Hip").global_position, 
+			  skeleton.get_node("Hip/Torso").global_position, 
+			  bone_color, bone_width)
+	
+	# Draw the head (as a circle)
+	var head_pos = skeleton.get_node("Hip/Torso/Head").global_position
+	draw_circle(head_pos, head_radius, bone_color)
+	
+	# Draw arms
+	draw_line(skeleton.get_node("Hip/Torso").global_position, 
+			  skeleton.get_node("Hip/Torso/LeftArm").global_position, 
+			  bone_color, bone_width)
+	draw_line(skeleton.get_node("Hip/Torso/LeftArm").global_position, 
+			  skeleton.get_node("Hip/Torso/LeftArm/LeftForearm").global_position, 
+			  bone_color, bone_width)
+			  
+	draw_line(skeleton.get_node("Hip/Torso").global_position, 
+			  skeleton.get_node("Hip/Torso/RightArm").global_position, 
+			  bone_color, bone_width)
+	draw_line(skeleton.get_node("Hip/Torso/RightArm").global_position, 
+			  skeleton.get_node("Hip/Torso/RightArm/RightForearm").global_position, 
+			  bone_color, bone_width)
+	
+	# Draw legs
+	draw_line(skeleton.get_node("Hip").global_position, 
+			  skeleton.get_node("Hip/LeftLeg").global_position, 
+			  bone_color, bone_width)
+	draw_line(skeleton.get_node("Hip/LeftLeg").global_position, 
+			  skeleton.get_node("Hip/LeftLeg/LeftShin").global_position, 
+			  bone_color, bone_width)
+			  
+	draw_line(skeleton.get_node("Hip").global_position, 
+			  skeleton.get_node("Hip/RightLeg").global_position, 
+			  bone_color, bone_width)
+	draw_line(skeleton.get_node("Hip/RightLeg").global_position, 
+			  skeleton.get_node("Hip/RightLeg/RightShin").global_position, 
+			  bone_color, bone_width)
+	
+	# Only draw main joints
+	draw_main_joints(skeleton)
 
-func draw_bone_recursive(bone: Bone2D):
-    for child in bone.get_children():
-        if child is Bone2D:
-            draw_line(bone.global_position, child.global_position, bone_color, bone_width)
-            draw_bone_recursive(child)
-
-func draw_joints(bone: Bone2D):
-    draw_circle(bone.global_position, joint_radius, joint_color)
-    for child in bone.get_children():
-        if child is Bone2D:
-            draw_joints(child)
+func draw_main_joints(skeleton):
+	var joint_positions = [
+		"Hip",
+		"Hip/Torso",
+		"Hip/LeftLeg",
+		"Hip/LeftLeg/LeftShin",
+		"Hip/RightLeg",
+		"Hip/RightLeg/RightShin",
+		"Hip/Torso/LeftArm",
+		"Hip/Torso/LeftArm/LeftForearm",
+		"Hip/Torso/RightArm",
+		"Hip/Torso/RightArm/RightForearm"
+	]
+	
+	for path in joint_positions:
+		var joint = skeleton.get_node(path)
+		draw_circle(joint.global_position, joint_radius, joint_color)
 
 func _process(_delta):
-    queue_redraw()
+	queue_redraw()
