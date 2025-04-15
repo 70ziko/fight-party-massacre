@@ -11,6 +11,13 @@ var direction = 1  # 1 for right, -1 for left
 
 func _ready():
 	setup_collision()
+	print("Character initialized")
+	print_skeleton_structure($Skeleton2D)
+
+func print_skeleton_structure(node: Node, indent: String = ""):
+	print(indent + node.name)
+	for child in node.get_children():
+		print_skeleton_structure(child, indent + "  ")
 
 func setup_collision():
 	var capsule = CapsuleShape2D.new()
