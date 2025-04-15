@@ -8,6 +8,25 @@ var health = 100
 var is_attacking = false
 var direction = 1  # 1 for right, -1 for left
 
+func _ready():
+	setup_skeleton()
+
+func setup_skeleton():
+	var capsule = CapsuleShape2D.new()
+	capsule.radius = 16
+	capsule.height = 48
+	$CollisionShape2D.shape = capsule
+
+	# Setup bones initial positions
+	$Skeleton2D/Hip.position = Vector2(0, 0)
+	$Skeleton2D/Hip/Spine.position = Vector2(0, -20)
+	$Skeleton2D/Hip/Spine/Head.position = Vector2(0, -20)
+	$Skeleton2D/Hip/LeftLeg.position = Vector2(-10, 10)
+	$Skeleton2D/Hip/RightLeg.position = Vector2(10, 10)
+	$Skeleton2D/Hip/Spine/LeftArm.position = Vector2(-15, -15)
+	$Skeleton2D/Hip/Spine/RightArm.position = Vector2(15, -15)
+
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
