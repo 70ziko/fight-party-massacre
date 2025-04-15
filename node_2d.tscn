@@ -1,56 +1,57 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=2 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_0e48y"]
-[ext_resource type="Script" uid="uid://bxyng0sw7ws5n" path="res://shapes/collision_shape_2d.gd" id="1_wtcfe"]
-[ext_resource type="Script" uid="uid://colbv3cad50t6" path="res://scripts/bones/hip-move-update.gd" id="3_ir8iy"]
-[ext_resource type="Script" uid="uid://chbyeliu8db81" path="res://scripts/bones/spine-move-update.gd" id="4_hqns4"]
-[ext_resource type="Script" uid="uid://dhuhkl68fu072" path="res://scripts/bones/head-move-update.gd" id="5_x0ka3"]
-[ext_resource type="Script" uid="uid://br1bj6ykhpd47" path="res://scripts/bones/left-leg-move-update.gd" id="6_0h7mo"]
-[ext_resource type="Script" uid="uid://jka4af13w74i" path="res://scripts/bones/right-leg-move-update.gd" id="7_nr8wp"]
-[ext_resource type="Script" uid="uid://dj55bu0ywu35g" path="res://scripts/bones/right-arm-move-update.gd" id="8_d2bti"]
-[ext_resource type="Script" uid="uid://m7hpmn6vr7hx" path="res://scripts/bones/left-arm-move-update.gd" id="9_ta5nu"]
-[ext_resource type="Script" uid="uid://b8udp80jabls" path="res://stickman_draw.gd" id="10_flf07"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k73cj"]
-radius = 277.96
-height = 1024.0
-
-[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_rjqkl"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_0e48y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_k73cj")
-script = ExtResource("1_wtcfe")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
-
 [node name="Skeleton2D" type="Skeleton2D" parent="CharacterBody2D"]
-modification_stack = SubResource("SkeletonModificationStack2D_rjqkl")
 
 [node name="Hip" type="Bone2D" parent="CharacterBody2D/Skeleton2D"]
-script = ExtResource("3_ir8iy")
+rest = Transform2D(1, 0, 0, 1, 0, 0)
 
-[node name="Spine" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip"]
-script = ExtResource("4_hqns4")
+[node name="Torso" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip"]
+position = Vector2(0, -20)
+rest = Transform2D(1, 0, 0, 1, 0, -20)
 
-[node name="LeftArm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Spine"]
-script = ExtResource("9_ta5nu")
+[node name="Head" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso"]
+position = Vector2(0, -15)
+rest = Transform2D(1, 0, 0, 1, 0, -15)
 
-[node name="Head" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Spine"]
-script = ExtResource("5_x0ka3")
+[node name="LeftArm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso"]
+position = Vector2(-10, -10)
+rest = Transform2D(1, 0, 0, 1, -10, -10)
 
-[node name="RightArm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Spine"]
-script = ExtResource("8_d2bti")
+[node name="LeftForearm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso/LeftArm"]
+position = Vector2(-15, 0)
+rest = Transform2D(1, 0, 0, 1, -15, 0)
+
+[node name="RightArm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso"]
+position = Vector2(10, -10)
+rest = Transform2D(1, 0, 0, 1, 10, -10)
+
+[node name="RightForearm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso/RightArm"]
+position = Vector2(15, 0)
+rest = Transform2D(1, 0, 0, 1, 15, 0)
 
 [node name="LeftLeg" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip"]
-script = ExtResource("6_0h7mo")
+position = Vector2(-5, 0)
+rest = Transform2D(1, 0, 0, 1, -5, 0)
+
+[node name="LeftShin" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/LeftLeg"]
+position = Vector2(0, 20)
+rest = Transform2D(1, 0, 0, 1, 0, 20)
 
 [node name="RightLeg" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip"]
-script = ExtResource("7_nr8wp")
+position = Vector2(5, 0)
+rest = Transform2D(1, 0, 0, 1, 5, 0)
 
-[node name="stickman_drawer" type="Node2D" parent="CharacterBody2D"]
-script = ExtResource("10_flf07")
+[node name="RightShin" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/RightLeg"]
+position = Vector2(0, 20)
+rest = Transform2D(1, 0, 0, 1, 0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]

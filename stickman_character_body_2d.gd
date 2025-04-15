@@ -8,24 +8,15 @@ var health = 100
 var is_attacking = false
 var direction = 1  # 1 for right, -1 for left
 
-func _ready():
-	setup_skeleton()
 
-func setup_skeleton():
+func _ready():
+	setup_collision()
+
+func setup_collision():
 	var capsule = CapsuleShape2D.new()
 	capsule.radius = 16
 	capsule.height = 48
 	$CollisionShape2D.shape = capsule
-
-	# Setup bones initial positions
-	$Skeleton2D/Hip.position = Vector2(0, 0)
-	$Skeleton2D/Hip/Spine.position = Vector2(0, -20)
-	$Skeleton2D/Hip/Spine/Head.position = Vector2(0, -20)
-	$Skeleton2D/Hip/LeftLeg.position = Vector2(-10, 10)
-	$Skeleton2D/Hip/RightLeg.position = Vector2(10, 10)
-	$Skeleton2D/Hip/Spine/LeftArm.position = Vector2(-15, -15)
-	$Skeleton2D/Hip/Spine/RightArm.position = Vector2(15, -15)
-
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -44,3 +35,17 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
+
+
+func _process(_delta):
+	# Update bone rotations based on movement
+	var skeleton = $Skeleton2D
+	var movement_factor = velocity.x / speed
+	
+	# Leg swing
+	skeleton.get_node("Hip/LeftLeg").rotation = sin(Time.get_ticks_msec() * 0.01) * movement_factor * 0.5
+	skeleton.get_node("Hip/RightLeg").rotation = -sin(Time.get_ticks_msec() * 0.01) * movement_factor * 0.5
+	
+	# Arm swing
+	skeleton.get_node("Hip/Torso/LeftArm").rotation = -sin(Time.get_ticks_msec() * 0.01) * movement_factor * 0.5
+	skeleton.get_node("Hip/Torso/RightArm").rotation = sin(Time.get_ticks_msec() * 0.01) * movement_factor * 0.5
