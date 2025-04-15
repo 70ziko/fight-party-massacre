@@ -12,7 +12,7 @@ height = 5052.0
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(721, 2944)
+position = Vector2(-343, -526)
 script = ExtResource("1_0e48y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
