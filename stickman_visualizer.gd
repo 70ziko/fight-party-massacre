@@ -6,42 +6,27 @@ var bone_width = 2.0
 var joint_radius = 3.0
 
 func _draw():
-	var skeleton = $"../Skeleton2D"
-	if not skeleton:
-		return
-		
-	# Draw bones
-	draw_bone_chain("Hip/Torso/Head")
-	draw_bone_chain("Hip/Torso/LeftArm/LeftForearm")
-	draw_bone_chain("Hip/Torso/RightArm/RightForearm")
-	draw_bone_chain("Hip/LeftLeg/LeftShin")
-	draw_bone_chain("Hip/RightLeg/RightShin")
-	
-	# Draw joints
-	draw_joints(skeleton)
+    var skeleton = $"../Skeleton2D"
+    if not skeleton:
+        return
+        
+    # Draw all bones recursively
+    draw_bone_recursive(skeleton.get_node("Hip"))
+    
+    # Draw joints
+    draw_joints(skeleton.get_node("Hip"))
 
-func draw_bone_chain(path: String):
-	var skeleton = $"../Skeleton2D"
-	var bones = path.split("/")
-	var current_node = skeleton
-	
-	for i in range(len(bones) - 1):
-		current_node = current_node.get_node(bones[i])
-		var next_node = current_node.get_node(bones[i + 1])
-		draw_line(current_node.global_position, next_node.global_position, 
-				 bone_color, bone_width)
+func draw_bone_recursive(bone: Bone2D):
+    for child in bone.get_children():
+        if child is Bone2D:
+            draw_line(bone.global_position, child.global_position, bone_color, bone_width)
+            draw_bone_recursive(child)
 
-func draw_joints(skeleton: Node2D):
-	for bone in skeleton.get_children():
-		if bone is Bone2D:
-			draw_circle(bone.global_position, joint_radius, joint_color)
-			_draw_joints_recursive(bone)
-
-func _draw_joints_recursive(bone: Node2D):
-	for child in bone.get_children():
-		if child is Bone2D:
-			draw_circle(child.global_position, joint_radius, joint_color)
-			_draw_joints_recursive(child)
+func draw_joints(bone: Bone2D):
+    draw_circle(bone.global_position, joint_radius, joint_color)
+    for child in bone.get_children():
+        if child is Bone2D:
+            draw_joints(child)
 
 func _process(_delta):
-	queue_redraw()
+    queue_redraw()
