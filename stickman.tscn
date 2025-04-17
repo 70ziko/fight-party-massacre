@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=4 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://dkfhnh3ps2uld" path="res://stickman_visualizer.gd" id="2_0e48y"]
@@ -6,9 +6,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e48y"]
 radius = 33.93
 height = 100.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
-size = Vector2(1221.5, 95)
 
 [node name="Game" type="Node2D"]
 
@@ -104,10 +101,3 @@ shape = SubResource("CapsuleShape2D_0e48y")
 [node name="StickmanVisualizer" type="Node2D" parent="CharacterBody2D"]
 position = Vector2(1, 17)
 script = ExtResource("2_0e48y")
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-7, 164)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(504, 778)
-shape = SubResource("RectangleShape2D_0e48y")
