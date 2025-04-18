@@ -1,1 +1,0 @@
-extends Bone2D

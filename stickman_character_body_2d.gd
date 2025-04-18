@@ -29,15 +29,14 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = jump_velocity
 
 	# TODO: change to joystick analog directions
-	var input_direction = Input.get_axis("move_left", "move_right")
+	var input_direction = Input.get_axis("ui_left", "ui_right")
 	if input_direction:
 		velocity.x = input_direction * speed
 		direction = 1 if input_direction > 0 else -1
-		$Sprite2D.flip_h = (direction < 0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
