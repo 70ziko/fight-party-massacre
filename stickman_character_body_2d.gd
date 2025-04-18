@@ -12,7 +12,7 @@ var direction = 1  # 1 for right, -1 for left
 func _ready():
 	setup_collision()
 	print("Character initialized")
-	print_skeleton_structure($Skeleton2D)
+	#print_skeleton_structure($Skeleton2D)
 
 func print_skeleton_structure(node: Node, indent: String = ""):
 	print(indent + node.name)
@@ -32,7 +32,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = jump_velocity
 
-	# TODO: change to joystick analog directions
+	# TODO: change to GUI joystick analog directions
 	var input_direction = Input.get_axis("ui_left", "ui_right")
 	if input_direction:
 		velocity.x = input_direction * speed

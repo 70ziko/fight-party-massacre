@@ -1,64 +1,67 @@
 extends Node2D
 
 var bone_color = Color.WHITE
-var joint_color = Color.RED
-var bone_width = 2.0
-var joint_radius = 3.0
-var head_radius = 10.0
+var joint_color = Color.WHITE_SMOKE
+var bone_width = 6.0
+var joint_radius = 2.0
+var head_radius = 12.0
 
 func _draw():
 	var skeleton = $"../Skeleton2D"
 	if not skeleton:
 		return
 	
-	# Draw the main body parts manually to avoid drawing all the internal connections
-	
-	# Draw the torso
 	draw_line(skeleton.get_node("Hip").global_position, 
-			  skeleton.get_node("Hip/Torso").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/Torso").global_position, 
+		  bone_color, bone_width)
 	
 	# Draw the head (as a circle)
 	var head_pos = skeleton.get_node("Hip/Torso/Head").global_position
 	draw_circle(head_pos, head_radius, bone_color)
 	
+	# Draw neck
+	draw_line(skeleton.get_node("Hip/Torso").global_position, 
+		skeleton.get_node("Hip/Torso/Head").global_position, 
+		bone_color, bone_width)
+	
 	# Draw arms
 	draw_line(skeleton.get_node("Hip/Torso").global_position, 
-			  skeleton.get_node("Hip/Torso/LeftArm").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/Torso/LeftArm").global_position, 
+		  bone_color, bone_width)
 	draw_line(skeleton.get_node("Hip/Torso/LeftArm").global_position, 
-			  skeleton.get_node("Hip/Torso/LeftArm/LeftForearm").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/Torso/LeftArm/LeftForearm").global_position, 
+		  bone_color, bone_width)
 			  
 	draw_line(skeleton.get_node("Hip/Torso").global_position, 
-			  skeleton.get_node("Hip/Torso/RightArm").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/Torso/RightArm").global_position, 
+		  bone_color, bone_width)
 	draw_line(skeleton.get_node("Hip/Torso/RightArm").global_position, 
-			  skeleton.get_node("Hip/Torso/RightArm/RightForearm").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/Torso/RightArm/RightForearm").global_position, 
+		  bone_color, bone_width)
 	
 	# Draw legs
 	draw_line(skeleton.get_node("Hip").global_position, 
-			  skeleton.get_node("Hip/LeftLeg").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/LeftLeg").global_position, 
+		  bone_color, bone_width)
 	draw_line(skeleton.get_node("Hip/LeftLeg").global_position, 
-			  skeleton.get_node("Hip/LeftLeg/LeftShin").global_position, 
-			  bone_color, bone_width)
-			  
+		  skeleton.get_node("Hip/LeftLeg/LeftShin").global_position, 
+		  bone_color, bone_width)
+		  
 	draw_line(skeleton.get_node("Hip").global_position, 
-			  skeleton.get_node("Hip/RightLeg").global_position, 
-			  bone_color, bone_width)
+		  skeleton.get_node("Hip/RightLeg").global_position, 
+		  bone_color, bone_width)
 	draw_line(skeleton.get_node("Hip/RightLeg").global_position, 
-			  skeleton.get_node("Hip/RightLeg/RightShin").global_position, 
-			  bone_color, bone_width)
-	
+		  skeleton.get_node("Hip/RightLeg/RightShin").global_position, 
+		  bone_color, bone_width)
+		
+		
 	# Only draw main joints
 	draw_main_joints(skeleton)
 
 func draw_main_joints(skeleton):
 	var joint_positions = [
-		"Hip",
-		"Hip/Torso",
+		#"Hip",
+		#"Hip/Torso",
 		"Hip/LeftLeg",
 		"Hip/LeftLeg/LeftShin",
 		"Hip/RightLeg",
