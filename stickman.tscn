@@ -34,16 +34,16 @@ length = 10.0
 bone_angle = 0.0
 
 [node name="LeftArm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso"]
-position = Vector2(-18, 15)
+position = Vector2(-20, 17)
 rest = Transform2D(1, 0, 0, 1, -10, -10)
 
 [node name="LeftForearm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso/LeftArm"]
-position = Vector2(-8, 28)
+position = Vector2(-8, 27)
 rest = Transform2D(1, 0, 0, 1, -15, 0)
 
 [node name="LeftHand" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso/LeftArm/LeftForearm"]
 visible = false
-position = Vector2(-6, 11)
+position = Vector2(-7, 10)
 rest = Transform2D(1, 0, 0, 1, -10, 0)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -54,7 +54,7 @@ position = Vector2(20, 17)
 rest = Transform2D(1, 0, 0, 1, 10, -10)
 
 [node name="RightForearm" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso/RightArm"]
-position = Vector2(10, 27)
+position = Vector2(8, 27)
 rest = Transform2D(1, 0, 0, 1, 15, 0)
 
 [node name="RightHand" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/Torso/RightArm/RightForearm"]
@@ -66,11 +66,11 @@ length = 5.0
 bone_angle = 0.0
 
 [node name="LeftLeg" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip"]
-position = Vector2(-15, 31)
+position = Vector2(-16, 32)
 rest = Transform2D(1, 0, 0, 1, -5, 0)
 
 [node name="LeftShin" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/LeftLeg"]
-position = Vector2(-2, 39)
+position = Vector2(-3, 40)
 rest = Transform2D(1, 0, 0, 1, 0, 20)
 
 [node name="LeftFoot" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/LeftLeg/LeftShin"]
@@ -82,16 +82,16 @@ length = 5.0
 bone_angle = 0.0
 
 [node name="RightLeg" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip"]
-position = Vector2(16, 33)
+position = Vector2(16, 32)
 rest = Transform2D(1, 0, 0, 1, 5, 0)
 
 [node name="RightShin" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/RightLeg"]
-position = Vector2(3, 37)
+position = Vector2(3, 40)
 rest = Transform2D(1, 0, 0, 1, 0, 20)
 
 [node name="RightFoot" type="Bone2D" parent="CharacterBody2D/Skeleton2D/Hip/RightLeg/RightShin"]
 visible = false
-position = Vector2(1, 13)
+position = Vector2(0, 14)
 rest = Transform2D(1, 0, 0, 1, 0, 15)
 auto_calculate_length_and_angle = false
 length = 5.0
