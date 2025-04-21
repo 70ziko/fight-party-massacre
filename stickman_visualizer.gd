@@ -55,10 +55,9 @@ func _draw():
 		  bone_color, bone_width)
 		
 		
-	# Only draw main joints
-	draw_main_joints(skeleton)
+	draw_joints(skeleton)
 
-func draw_main_joints(skeleton):
+func draw_joints(skeleton):
 	var joint_positions = [
 		#"Hip",
 		#"Hip/Torso",
