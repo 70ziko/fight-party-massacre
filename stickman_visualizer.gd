@@ -22,7 +22,8 @@ func _draw():
 	# Draw neck
 	draw_line(skeleton.get_node("Hip/Torso").global_position, 
 		skeleton.get_node("Hip/Torso/Head").global_position, 
-		bone_color, bone_width)
+		bone_color, bone_width,
+		)
 	
 	# Draw arms
 	draw_line(skeleton.get_node("Hip/Torso").global_position, 
