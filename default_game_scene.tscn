@@ -608,7 +608,7 @@ sources/0 = SubResource("TileSetAtlasSource_fvh0c")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_1234a")
 format = 2
-layer_0/tile_data = PackedInt32Array(1835019, 0, 0, 1835027, 0, 0, 1835035, 0, 0, 1835051, 0, 0, 1835059, 0, 0, 1835011, 0, 0, 1835043, 0, 0)
+layer_0/tile_data = PackedInt32Array(4063236, 0, 65536, 4063244, 0, 65536, 4063252, 0, 65536, 4063260, 0, 65536, 4063268, 0, 65536, 4063276, 0, 65536, 4063284, 0, 65536, 4063292, 0, 65536, 4063300, 0, 65536, 4063308, 0, 65536, 4063316, 0, 65536, 4063324, 0, 65536, 4063332, 0, 65536, 4063340, 0, 65536, 4063348, 0, 65536)
 
 [node name="Ground" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
