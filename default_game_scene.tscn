@@ -615,4 +615,5 @@ use_parent_material = true
 tile_set = SubResource("TileSet_1234a")
 
 [node name="Player" parent="." instance=ExtResource("2_fvh0c")]
+physics_interpolation_mode = 1
 position = Vector2(400, 300)

@@ -18,7 +18,7 @@ modifications/0 = SubResource("SkeletonModification2DPhysicalBones_iu0mg")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e48y"]
 radius = 33.93
-height = 100.0
+height = 156.0
 
 [node name="Player" type="Node2D"]
 
@@ -79,6 +79,7 @@ rest = Transform2D(1, 0, 0, 1, 3, 40)
 [node name="PhysicalHip2D" type="PhysicalBone2D" parent="RigidBody2D/Skeleton2D"]
 position = Vector2(0, -50)
 bone2d_nodepath = NodePath("../Hip")
+bone2d_index = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D"]
 shape = SubResource("RectangleShape2D_iu0mg")
@@ -95,7 +96,7 @@ node_b = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 visible = false
-position = Vector2(0, -10)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_0e48y")
 
 [node name="StickmanVisualizer" type="Node2D" parent="RigidBody2D"]
