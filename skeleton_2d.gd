@@ -1,0 +1,1 @@
+extends Skeleton2D

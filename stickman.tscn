@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=6 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_iu0mg"]
 [ext_resource type="Script" uid="uid://dkfhnh3ps2uld" path="res://stickman_visualizer.gd" id="2_xlwhs"]
 
 [sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_iu0mg"]
+execution_mode = 1
 physical_bone_chain_length = 2
 fetch_bones = null
 joint_0_nodepath = NodePath("PhysicalHip2D")
@@ -15,10 +16,7 @@ modification_count = 1
 modifications/0 = SubResource("SkeletonModification2DPhysicalBones_iu0mg")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0mg"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e48y"]
-radius = 33.93
-height = 156.0
+size = Vector2(12, 34)
 
 [node name="Player" type="Node2D"]
 
@@ -28,11 +26,49 @@ script = ExtResource("1_iu0mg")
 [node name="Skeleton2D" type="Skeleton2D" parent="RigidBody2D"]
 modification_stack = SubResource("SkeletonModificationStack2D_xlwhs")
 
+[node name="PhysicalHip2D" type="PhysicalBone2D" parent="RigidBody2D/Skeleton2D"]
+bone2d_nodepath = NodePath("../Hip")
+bone2d_index = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_iu0mg")
+
+[node name="PhysicalTorso" type="PhysicalBone2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D"]
+bone2d_nodepath = NodePath("../../Hip/RightLeg/RightShin")
+bone2d_index = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D/PhysicalTorso"]
+position = Vector2(1, 45)
+shape = SubResource("RectangleShape2D_iu0mg")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D/PhysicalTorso"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+
 [node name="Hip" type="Bone2D" parent="RigidBody2D/Skeleton2D"]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
+[node name="LeftLeg" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip"]
+position = Vector2(-16, 32)
+rest = Transform2D(1, 0, 0, 1, -16, 32)
+
+[node name="LeftShin" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip/LeftLeg"]
+visible = false
+position = Vector2(-3, 40)
+rest = Transform2D(1, 0, 0, 1, -3, 40)
+
+[node name="RightLeg" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip"]
+position = Vector2(16, 32)
+rest = Transform2D(1, 0, 0, 1, 16, 32)
+
+[node name="RightShin" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip/RightLeg"]
+visible = false
+position = Vector2(3, 40)
+rest = Transform2D(1, 0, 0, 1, 3, 40)
+
 [node name="Torso" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip"]
-position = Vector2(0, -50)
+position = Vector2(0, -44)
 rest = Transform2D(1, 0, 0, 1, 0, -50)
 
 [node name="Head" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip/Torso"]
@@ -57,47 +93,6 @@ rest = Transform2D(1, 0, 0, 1, 20, 17)
 visible = false
 position = Vector2(8, 27)
 rest = Transform2D(1, 0, 0, 1, 8, 27)
-
-[node name="LeftLeg" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip"]
-position = Vector2(-16, 32)
-rest = Transform2D(1, 0, 0, 1, -16, 32)
-
-[node name="LeftShin" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip/LeftLeg"]
-visible = false
-position = Vector2(-3, 40)
-rest = Transform2D(1, 0, 0, 1, -3, 40)
-
-[node name="RightLeg" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip"]
-position = Vector2(16, 32)
-rest = Transform2D(1, 0, 0, 1, 16, 32)
-
-[node name="RightShin" type="Bone2D" parent="RigidBody2D/Skeleton2D/Hip/RightLeg"]
-visible = false
-position = Vector2(3, 40)
-rest = Transform2D(1, 0, 0, 1, 3, 40)
-
-[node name="PhysicalHip2D" type="PhysicalBone2D" parent="RigidBody2D/Skeleton2D"]
-position = Vector2(0, -50)
-bone2d_nodepath = NodePath("../Hip")
-bone2d_index = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D"]
-shape = SubResource("RectangleShape2D_iu0mg")
-
-[node name="PhysicalTorso" type="PhysicalBone2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D"]
-bone2d_nodepath = NodePath("../../Hip/Torso")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D/PhysicalTorso"]
-shape = SubResource("RectangleShape2D_iu0mg")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D/Skeleton2D/PhysicalHip2D/PhysicalTorso"]
-node_a = NodePath("../..")
-node_b = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-visible = false
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_0e48y")
 
 [node name="StickmanVisualizer" type="Node2D" parent="RigidBody2D"]
 position = Vector2(1, 17)
