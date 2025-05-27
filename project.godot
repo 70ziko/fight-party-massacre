@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Fight Party Masacre"
+config/name="Stick Party Masacre"
 run/main_scene="uid://bp16q6elxwr3o"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"

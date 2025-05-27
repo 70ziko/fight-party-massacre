@@ -1,4 +1,4 @@
-# Stick party massacre
+# STICK PARTY MASSACRE
 
 A dynamic mobile fighting party game with a twist!
 
