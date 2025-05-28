@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://bp16q6elxwr3o"]
+[gd_scene load_steps=6 format=4 uid="uid://bp16q6elxwr3o"]
 
 [ext_resource type="Texture2D" uid="uid://bpr62il3mfygg" path="res://assets/lab_decors_tileset/lab_tileset.svg" id="1_m5fsx"]
 [ext_resource type="PackedScene" uid="uid://c7ghrp6e6f8fw" path="res://stickman.tscn" id="2_fvh0c"]
@@ -603,14 +603,19 @@ texture_region_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_fvh0c")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fvh0c"]
+distance = -91.0
+
 [node name="Map" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource("TileSet_1234a")
 format = 2
 
 [node name="Ground" type="TileMapLayer" parent="TileMap"]
 physics_interpolation_mode = 1
+visible = false
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAEAD4AAAAAAAAAAAAMAD4AAAAAAAAAAAAUAD4AAAAAAAAAAAAcAD4AAAAAAAAAAAAkAD4AAAAAAAAAAAAsAD4AAAAAAAAAAAA0AD4AAAAAAAAAAAA8AD4AAAAAAAAAAABEAD4AAAAAAAAAAABMAD4AAAAAAAAAAABUAD4AAAAAAAAAAABcAD4AAAAAAAAAAABkAD4AAAAAAAAAAABsAD4AAAAAAAAAAAB0AD4AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_1234a")
@@ -618,4 +623,10 @@ collision_visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_fvh0c")]
 physics_interpolation_mode = 1
-position = Vector2(400, 300)
+position = Vector2(420, 301)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(481, 984)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_fvh0c")
