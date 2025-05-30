@@ -17,7 +17,7 @@ modifications/0 = SubResource("SkeletonModification2DPhysicalBones_iu0mg")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0mg"]
 size = Vector2(12, 34)
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_iu0mg")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]

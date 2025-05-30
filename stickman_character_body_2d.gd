@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 func _ready():
 	var skel = $Skeleton2D
