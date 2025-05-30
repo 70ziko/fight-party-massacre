@@ -6,9 +6,9 @@ A dynamic mobile fighting party game with a twist!
 
 The game has 3 dynamic turns each lasting a specified amount of time, in these stages the players:
 
-1. Choose the item they will want to spawn, place or equip - 7-10s
+1. Choose the item they will want to spawn, place or equip - 5s
 2. Place the item on the map - 5s
-3. Use the environment and attacks to overpower the challenger
+3. Use the environment and attacks to overpower the challenger - 20s
 
 This takes turns in a loop until one of the players loses all HP.
 
