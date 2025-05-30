@@ -1,6 +1,9 @@
 extends CharacterBody2D
+signal movement_direction_changed(dir)
 
 var gravity: float = float(ProjectSettings.get_setting("physics/2d/default_gravity"))
+var speed := 200.0
+var movement_direction := 0 # -1 for left, 1 for right, 0 for idle
 
 func _ready():
 	var skel = $Skeleton2D
@@ -13,11 +16,24 @@ func _ready():
 	_recursive_print_bones(skel)
 
 func _physics_process(delta):
-	print(position.y)
+	var input_dir = 0
+	if Input.is_action_pressed("ui_left"):
+		input_dir -= 1
+	if Input.is_action_pressed("ui_right"):
+		input_dir += 1
+	
+	if movement_direction != input_dir:
+		movement_direction = input_dir
+		print("direction changed in CB:", movement_direction)
+		emit_signal("movement_direction_changed", movement_direction)
+		
+	velocity.x = movement_direction * speed
+
 	if position.y <= 490:
 		velocity.y += gravity * delta
 	else:
 		velocity.y = 0
+
 	move_and_slide()
 
 func _recursive_print_bones(node):
