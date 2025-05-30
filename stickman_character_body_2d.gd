@@ -1,5 +1,4 @@
 extends CharacterBody2D
-#signal movement_direction_changed(dir)
 
 var gravity: float = float(ProjectSettings.get_setting("physics/2d/default_gravity"))
 var speed := 200.0
