@@ -1,9 +1,18 @@
 extends CharacterBody2D
-signal movement_direction_changed(dir)
+#signal movement_direction_changed(dir)
 
 var gravity: float = float(ProjectSettings.get_setting("physics/2d/default_gravity"))
 var speed := 200.0
 var movement_direction := 0 # -1 for left, 1 for right, 0 for idle
+
+func _recursive_print_bones(node):
+	if node is PhysicalBone2D:
+		print("Found PhysicalBone2D: ", node.get_path())
+		for child in node.get_children():
+			if child is CollisionShape2D:
+				print("  Has CollisionShape2D: ", child.shape)
+	for child in node.get_children():
+		_recursive_print_bones(child)
 
 func _ready():
 	var skel = $Skeleton2D
@@ -24,8 +33,8 @@ func _physics_process(delta):
 	
 	if movement_direction != input_dir:
 		movement_direction = input_dir
-		print("direction changed in CB:", movement_direction)
-		emit_signal("movement_direction_changed", movement_direction)
+		#print("direction changed in CB:", movement_direction)
+		#emit_signal("movement_direction_changed", movement_direction)
 		
 	velocity.x = movement_direction * speed
 
@@ -35,12 +44,3 @@ func _physics_process(delta):
 		velocity.y = 0
 
 	move_and_slide()
-
-func _recursive_print_bones(node):
-	if node is PhysicalBone2D:
-		print("Found PhysicalBone2D: ", node.get_path())
-		for child in node.get_children():
-			if child is CollisionShape2D:
-				print("  Has CollisionShape2D: ", child.shape)
-	for child in node.get_children():
-		_recursive_print_bones(child)
