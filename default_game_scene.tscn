@@ -8,10 +8,6 @@ size = Vector2(1676, 20)
 
 [node name="Map" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("2_fvh0c")]
-physics_interpolation_mode = 1
-position = Vector2(420, 301)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(481, 984)
 
@@ -23,3 +19,5 @@ shape = SubResource("RectangleShape2D_fvh0c")
 position = Vector2(353, 68)
 scale = Vector2(12.9687, 0.226563)
 texture = ExtResource("3_wukky")
+
+[node name="Player" parent="." instance=ExtResource("2_fvh0c")]
