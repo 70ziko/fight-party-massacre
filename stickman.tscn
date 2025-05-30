@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=7 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_iu0mg"]
 [ext_resource type="Script" uid="uid://dkfhnh3ps2uld" path="res://stickman_visualizer.gd" id="2_xlwhs"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iu0mg"]
+
 [sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_iu0mg"]
-execution_mode = 1
 physical_bone_chain_length = 2
 fetch_bones = null
 joint_0_nodepath = NodePath("PhysicalHip2D")
@@ -21,6 +22,7 @@ size = Vector2(12, 34)
 [node name="Player" type="Node2D"]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_iu0mg")
 script = ExtResource("1_iu0mg")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="RigidBody2D"]
