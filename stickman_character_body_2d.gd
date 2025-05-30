@@ -13,7 +13,11 @@ func _ready():
 	_recursive_print_bones(skel)
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
+	print(position.y)
+	if position.y <= 490:
+		velocity.y += gravity * delta
+	else:
+		velocity.y = 0
 	move_and_slide()
 
 func _recursive_print_bones(node):
