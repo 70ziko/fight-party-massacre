@@ -32,8 +32,6 @@ func _physics_process(delta):
 	
 	if movement_direction != input_dir:
 		movement_direction = input_dir
-		#print("direction changed in CB:", movement_direction)
-		#emit_signal("movement_direction_changed", movement_direction)
 		
 	velocity.x = movement_direction * speed
 

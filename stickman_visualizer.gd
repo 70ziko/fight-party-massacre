@@ -46,7 +46,6 @@ func draw_stickman(torso_offset: Vector2, movement_direction: int) -> void:
 
 	# Flip rear leg depending on direction
 	if movement_direction != 0:
-		# Assume left leg is rear when moving right, right leg is rear when moving left
 		if movement_direction > 0:
 			# Moving right: left leg is rear, flip it back
 			left_leg += Vector2(-8, 8)
