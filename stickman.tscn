@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7ghrp6e6f8fw"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ghrp6e6f8fw"]
 
 [ext_resource type="Script" uid="uid://bweayf6m5qsch" path="res://stickman_character_body_2d.gd" id="1_iu0mg"]
 [ext_resource type="Script" uid="uid://dkfhnh3ps2uld" path="res://stickman_visualizer.gd" id="2_xlwhs"]
@@ -6,44 +6,19 @@
 [sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_iu0mg"]
 physical_bone_chain_length = 2
 fetch_bones = null
-joint_0_nodepath = NodePath("PhysicalHip2D")
-joint_1_nodepath = NodePath("PhysicalHip2D/PhysicalTorso")
+joint_0_nodepath = NodePath("")
+joint_1_nodepath = NodePath("")
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_xlwhs"]
 enabled = true
 modification_count = 1
 modifications/0 = SubResource("SkeletonModification2DPhysicalBones_iu0mg")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0mg"]
-size = Vector2(12, 34)
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_iu0mg")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 modification_stack = SubResource("SkeletonModificationStack2D_xlwhs")
-
-[node name="PhysicalHip2D" type="PhysicalBone2D" parent="Skeleton2D"]
-bone2d_nodepath = NodePath("../Hip")
-bone2d_index = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/PhysicalHip2D"]
-visible = false
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_iu0mg")
-
-[node name="PhysicalTorso" type="PhysicalBone2D" parent="Skeleton2D/PhysicalHip2D"]
-bone2d_nodepath = NodePath("../../Hip/RightLeg/RightShin")
-bone2d_index = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/PhysicalHip2D/PhysicalTorso"]
-visible = false
-position = Vector2(1, 45)
-shape = SubResource("RectangleShape2D_iu0mg")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Skeleton2D/PhysicalHip2D/PhysicalTorso"]
-node_a = NodePath("../..")
-node_b = NodePath("..")
 
 [node name="Hip" type="Bone2D" parent="Skeleton2D"]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
